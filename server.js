@@ -10,12 +10,14 @@ app.set("view engine","ejs");
   //for style sheet
   app.use(express.static("public"));
 app.set("views",path.join(__dirname,"views"));
+
 app.get("/",(req,res,next)=>{
     res.render("index");
 });
 app.post("/final",(req,res,next)=>{
     const code=req.body.text;
     const url=qrcode.toDataURL(code,(err,src)=>{
+        
         res.render("final",{qr:src,});
     
     });
